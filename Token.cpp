@@ -1,5 +1,8 @@
 #include "Token.h"
+#include <iostream>
+#include <algorithm>
 
+/*Splits txt by spaces and stores the parts into buffer.*/
 static void split(std::vector<std::string>& buffer, const std::string& txt) {
     int offset = 0;
 
@@ -109,4 +112,9 @@ void release(Token* tk)
 {
     std::for_each(tk->children.begin(), tk->children.end(), [](Token* t) {release(t); });
     delete tk;
+}
+
+void print_token(Token* tk) {
+    if (tk->text.size() > 0) std::cout << tk->text << std::endl;
+    std::for_each(tk->children.begin(), tk->children.end(), print_token);
 }
