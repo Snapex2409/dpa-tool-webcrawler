@@ -67,6 +67,6 @@ void create_urls(std::vector<std::string>& buffer, const std::string& domain, co
     }
 
     buffer.clear();
-    buffer.resize(i_buf.size());
+    buffer.reserve(i_buf.size());
     for (const std::string& ref : i_buf) buffer.push_back(ref);
 }
