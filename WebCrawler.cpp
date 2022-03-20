@@ -30,9 +30,9 @@ int main(int argc, char **argv)
         return EXIT_SUCCESS;
     }
 
-    std::string domain = "";
+    std::string domain = "en.wikipedia.org";
     std::string protocol = "https://";
-    std::string path = "";
+    std::string path = "/wiki/Blue_Peacock";
     int limit = 1;
 
     if (cmd_oe("-d")) domain = get_cmd_o("-d");
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
     std::map<std::string, Token*> pages;
     crawl(pages, domain, protocol, path, limit);
     
-    for (const auto& [k, v] : pages) print_token(v);
+    //for (const auto& [k, v] : pages) print_token(v);
     return 0;
 }
 
@@ -86,6 +86,7 @@ static void crawl(std::map<std::string, Token*>& pages, const std::string& domai
         for (const std::string& str : buffer) {
             if (pages.contains(str)) continue;
             urls.push_back(str);
+            std::cout << str << std::endl;
         }
 
         using namespace std::literals::chrono_literals;
